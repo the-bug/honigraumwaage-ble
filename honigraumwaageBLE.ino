@@ -1,24 +1,16 @@
 #include <AltSoftSerial.h>
 #include "HX711.h"
 
-/*
- This example code uses bogde's excellent library: https://github.com/bogde/HX711
- bogde's library is released under a GNU GENERAL PUBLIC LICENSE
-
- The HX711 does one thing well: read load cells. The breakout board is compatible with any wheat-stone bridge
- based load cell which should allow a user to measure everything from a few grams to tens of tons.
- Arduino pin 
- 5V -> VCC
- GND -> GND
-*/
-
 // HX711
 #define calibration_factor -20570 // 20 KG Kettlebell
-#define DT  2 
-#define SCK  3
+#define DT 2 
+#define SCK 3
 HX711 scale(DT, SCK);
 
 // BLE
+// AltSoftSerial uses 
+// TX:D8 
+// RX:D9
 AltSoftSerial BTserial; 
 
 // MISC
@@ -37,7 +29,7 @@ void loop() {
 }
 
 
-
+// Scale stuff
 void initScale() {   
   Serial.println("initScale starts");
   Serial.begin(9600);
@@ -51,15 +43,17 @@ float getWeight() {
   return scale.get_units();  
 }
 
+// BLE stuff
+void initBLE() {
+  Serial.println("initBLE starts");
+  BTserial.begin(9600);  
+  Serial.println("initBLE ends");
+}
+
 void sendWeightToViaBLE(float weight) {
   Serial.println("getWeight starts and returns");   
   dtostrf(weight, 6, 2, result); // Leave room for too large numbers!
   BTserial.write(result);
 }
 
-void initBLE() {
-  Serial.println("initBLE starts");
-  BTserial.begin(9600);  
-  Serial.println("initBLE ends");
-}
 
