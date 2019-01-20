@@ -10,38 +10,30 @@
  Arduino pin 
  5V -> VCC
  GND -> GND
-
 */
 
 // HX711
-#define calibration_factor -20570 // 20 KG
-
+#define calibration_factor -20570 // 20 KG Kettlebell
 #define DT  2 
 #define SCK  3
-
 HX711 scale(DT, SCK);
 
 // BLE
 AltSoftSerial BTserial; 
-char c=' ';
+
+// MISC
+char result[8]; // Buffer big enough for 7-character float
 
 void setup() {
+  Serial.print("Sketch:   ");   Serial.println(__FILE__);
+  Serial.print("Uploaded: ");   Serial.println(__DATE__);
   initScale();
-  
-    Serial.print("Sketch:   ");   Serial.println(__FILE__);
-    Serial.print("Uploaded: ");   Serial.println(__DATE__);
-    Serial.println(" ");
-    BTserial.begin(9600);  
-    Serial.println("BTserial started at 9600");
+  initBLE();
 }
 
 void loop() {
-  Serial.print("Reading: ");
-  Serial.print(getWeight(), 1);
   sendWeightToViaBLE(getWeight());
-  Serial.print(" kg");
-  Serial.println();
-  delay(200);
+  delay(300);
 }
 
 
@@ -56,12 +48,18 @@ void initScale() {
 
 float getWeight() {
   Serial.println("getWeight starts and returns");
-  return  scale.get_units();  
+  return scale.get_units();  
 }
 
 void sendWeightToViaBLE(float weight) {
   Serial.println("getWeight starts and returns");   
-        c = weight; 
-        BTserial.write(c);
+  dtostrf(weight, 6, 2, result); // Leave room for too large numbers!
+  BTserial.write(result);
+}
+
+void initBLE() {
+  Serial.println("initBLE starts");
+  BTserial.begin(9600);  
+  Serial.println("initBLE ends");
 }
 
