@@ -29,7 +29,7 @@
     </mat-grid-tile>
 
     <mat-grid-tile>
-      <button mat-raised-button color="primary" (click)="send()">Senden</button>
+      <button mat-raised-button color="primary" (click)="send()" [disabled]="!number || !weight">Senden</button>
     </mat-grid-tile>
   </div>
 </mat-grid-list>
