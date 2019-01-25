@@ -5,6 +5,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FormsModule } from '@angular/forms';
+
+import { WebBluetoothModule } from '@manekinekko/angular-web-bluetooth';
 
 @NgModule({
   declarations: [
@@ -14,7 +17,11 @@ import { AppComponent } from './app.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule,
+    WebBluetoothModule.forRoot({
+      enableTracing: false // or false, this will enable logs in the browser's console
+    })
   ],
   providers: [
   ],
