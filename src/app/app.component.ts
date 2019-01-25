@@ -17,17 +17,23 @@ export class AppComponent {
   weight = '';
   number: number;
 
+  bleError: any;
+
   decoder = new TextDecoder();
 
   constructor(
     private snackBar: MatSnackBar,
     private readonly ble: BluetoothCore
-    ) { }
+  ) { }
 
   connectBLE() {
+    this.bleError = null;
     this.value().subscribe(v => {
       this.weight = this.decoder.decode(v);
-      this.bleConnectionEstablished = true;    
+      this.bleConnectionEstablished = true;
+    }, error => {
+      this.bleError = error
+      this.bleConnectionEstablished = false;
     })
   }
 

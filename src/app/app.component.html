@@ -4,6 +4,12 @@
     <button mat-raised-button color="primary" (click)="connectBLE()">Verbinden</button>
   </mat-grid-tile>
 
+  <mat-grid-tile *ngIf="bleError">
+    Es kam zu dem untenstehenden Fehler bei der Bluetooth-Verbindung.
+    Vielleicht einfach nochmal probieren....
+    <pre>{{bleError | json}}</pre>
+  </mat-grid-tile>
+
   <div *ngIf="bleConnectionEstablished">
     <mat-grid-tile>
       <mat-form-field class="input-width">
@@ -19,7 +25,7 @@
     </mat-grid-tile>
 
     <mat-grid-tile>
-      <button mat-raised-button color="primary"  (click)="send()">Senden</button>
+      <button mat-raised-button color="primary" (click)="send()">Senden</button>
     </mat-grid-tile>
   </div>
 </mat-grid-list>
