@@ -13,11 +13,12 @@ export class AppComponent {
   static GATT_CHARACTERISTIC = '0000ffe1-0000-1000-8000-00805f9b34fb';
   static GATT_PRIMARY_SERVICE = '0000ffe0-0000-1000-8000-00805f9b34fb';
 
-  bleConnectionEstablished = false;
   weight = '';
   number: number;
 
   bleError: any;
+  bleConnectionEstablished = false;
+  bleIsConnecting = false;
 
   decoder = new TextDecoder();
 
@@ -27,13 +28,16 @@ export class AppComponent {
   ) { }
 
   connectBLE() {
+    this.bleIsConnecting = true;
     this.bleError = null;
     this.value().subscribe(v => {
       this.weight = this.decoder.decode(v);
       this.bleConnectionEstablished = true;
+      this.bleIsConnecting = false;
     }, error => {
       this.bleError = error
       this.bleConnectionEstablished = false;
+      this.bleIsConnecting = false;
     })
   }
 

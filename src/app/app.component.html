@@ -1,10 +1,14 @@
 <mat-grid-list cols="1" rowHeight="90px">
 
-  <mat-grid-tile *ngIf="!bleConnectionEstablished">
+  <mat-grid-tile *ngIf="!bleConnectionEstablished && !bleIsConnecting">
     <button mat-raised-button color="primary" (click)="connectBLE()">Verbinden</button>
   </mat-grid-tile>
 
-  <mat-grid-tile *ngIf="bleError">
+  <mat-grid-tile *ngIf="bleIsConnecting">
+    <mat-spinner [diameter]="80"></mat-spinner>
+  </mat-grid-tile>
+
+  <mat-grid-tile *ngIf="bleError && !bleIsConnecting">
     Es kam zu dem untenstehenden Fehler bei der Bluetooth-Verbindung.
     Vielleicht einfach nochmal probieren....
     <pre>{{bleError | json}}</pre>
