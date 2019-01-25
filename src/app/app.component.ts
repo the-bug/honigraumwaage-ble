@@ -1,3 +1,4 @@
+import { CouchDBService } from './couch-db.service';
 import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { map, mergeMap } from 'rxjs/operators';
@@ -24,7 +25,8 @@ export class AppComponent {
 
   constructor(
     private snackBar: MatSnackBar,
-    private readonly ble: BluetoothCore
+    private couchDBService: CouchDBService,    
+    private readonly ble: BluetoothCore,
   ) { }
 
   connectBLE() {
@@ -44,6 +46,9 @@ export class AppComponent {
   send() {
     this.snackBar.open(`Kasten ${this.number} hat ${this.weight} Kg`, null, {
       duration: 2000,
+    });
+    this.couchDBService.send(this.weight, this.number).subscribe( _ => {
+      
     });
   }
 
