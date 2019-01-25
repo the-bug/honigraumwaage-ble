@@ -1,4 +1,9 @@
+
 <mat-grid-list cols="1" rowHeight="90px">
+
+  <mat-grid-tile>
+    <h1>Honigraumwaage</h1>
+  </mat-grid-tile>
 
   <mat-grid-tile *ngIf="!bleConnectionEstablished && !bleIsConnecting">
     <button mat-raised-button color="primary" (click)="connectBLE()">Verbinden</button>
