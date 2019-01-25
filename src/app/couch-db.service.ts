@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UUID } from 'angular2-uuid';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CouchDBService {
 
-  url = 'http://localhost:5984';
-  database = 'honigraeume';
+  url = environment.couchDb_Url;
+  database = environment.couchDb_database;
 
   constructor(private http: HttpClient) { }
 

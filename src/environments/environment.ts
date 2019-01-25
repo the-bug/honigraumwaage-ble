@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  couchDb_Url: 'http://localhost:5984',
+  couchDb_database: 'honigraeume'
 };
 
 /*
