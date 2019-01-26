@@ -1,3 +1,4 @@
+import { SendDialogService } from './send-dialog.service';
 import { CouchDBService } from './couch-db.service';
 import { MaterialModule } from './material.modul';
 import { BrowserModule } from '@angular/platform-browser';
@@ -10,10 +11,12 @@ import { FormsModule } from '@angular/forms';
 
 import { WebBluetoothModule } from '@manekinekko/angular-web-bluetooth';
 import { HttpClientModule } from '@angular/common/http';
+import { SendDialogComponent } from './send-dialog/send-dialog.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SendDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -27,11 +30,15 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
   ],
   providers: [
-    CouchDBService
+    CouchDBService,
+    SendDialogService
   ],
   bootstrap: [
     AppComponent
-  ]
+  ],
+  entryComponents: [
+    SendDialogComponent,
+  ],
 
 })
 export class AppModule { }

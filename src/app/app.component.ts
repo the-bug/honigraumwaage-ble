@@ -1,8 +1,8 @@
-import { CouchDBService } from './couch-db.service';
 import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { map, mergeMap } from 'rxjs/operators';
 import { BluetoothCore } from '@manekinekko/angular-web-bluetooth';
+import { SendDialogService } from './send-dialog.service';
 
 @Component({
   selector: 'app-root',
@@ -25,8 +25,8 @@ export class AppComponent {
 
   constructor(
     private snackBar: MatSnackBar,
-    private couchDBService: CouchDBService,    
     private readonly ble: BluetoothCore,
+    private sendDialogService: SendDialogService,
   ) { }
 
   connectBLE() {
@@ -44,12 +44,8 @@ export class AppComponent {
   }
 
   send() {
-    this.snackBar.open(`Kasten ${this.number} hat ${this.weight} Kg`, null, {
-      duration: 2000,
-    });
-    this.couchDBService.send(this.weight, this.number).subscribe( _ => {
-      
-    });
+    this.sendDialogService.send(this.weight, this.number);
+    this.number = null;
   }
 
   value() {

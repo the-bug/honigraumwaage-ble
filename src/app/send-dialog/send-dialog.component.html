@@ -1,0 +1,22 @@
+<h1 *ngIf="!sending" mat-dialog-title>Senden in {{counter}}</h1>
+<h1 *ngIf="sending" mat-dialog-title>Senden ...</h1>
+<div mat-dialog-content *ngIf="!sendError">
+  <mat-form-field>
+    <input matInput readonly placeholder="Gewicht" [value]="data.weight">
+  </mat-form-field>
+  <mat-form-field>
+    <input type="number" readonly matInput placeholder="Nummer" [value]="data.hiveMark">
+  </mat-form-field>
+</div>
+
+<div *ngIf="sendError">
+  <h1 mat-dialog-title>Fehler!</h1>
+  <div mat-dialog-content>
+    Der Eintrag wurde nicht gesendet!
+    <pre>{{sendError | json}}</pre>
+  </div>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-raised-button color="warn" (click)="cancel()">Abbruch</button>
+</div>
