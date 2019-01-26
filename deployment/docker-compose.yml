@@ -8,3 +8,6 @@ services:
       
   couchdb: 
     image: couchdb:2.3.0
+    environment:
+      COUCHDB_USER: ${COUCHDB_USER} 
+      COUCHDB_PASSWORD: ${COUCHDB_PASSWORD}
