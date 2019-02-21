@@ -1,1 +1,0 @@
-copy ..\frontend\dist\honigraumwaage reverseproxy\frontend-build
