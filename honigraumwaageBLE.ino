@@ -2,7 +2,7 @@
 #include "HX711.h"
 
 // HX711
-#define calibration_factor -20570 // 20 KG Kettlebell
+#define calibration_factor -21500 // 23,3 KG Kettlebell
 #define DT 2 
 #define SCK 3
 HX711 scale(DT, SCK);
