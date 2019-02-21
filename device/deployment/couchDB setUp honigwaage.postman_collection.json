@@ -1,0 +1,157 @@
+{
+	"info": {
+		"_postman_id": "3186807f-2339-40b4-b4eb-1e8a44dd0500",
+		"name": "couchDB setUp honigwaage",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost/db/_users",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic  ",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost/db/_users",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"db",
+						"_users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost/db/_replicator",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic  ",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost/db/_replicator",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"db",
+						"_replicator"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost/db/honigraeume",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic  ",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost/db/honigraeume",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"db",
+						"honigraeume"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "admin",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "admin",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "dfebabe0-3e30-48e3-b10e-7b23013364aa",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "61f15f3e-9a1c-425d-9d6e-aa821f16b225",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
