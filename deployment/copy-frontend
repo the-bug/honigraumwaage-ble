@@ -1,0 +1,2 @@
+#!/bin/bash
+cp ../frontend/dist/honigraumwaage/* reverseproxy/frontend-build -r
