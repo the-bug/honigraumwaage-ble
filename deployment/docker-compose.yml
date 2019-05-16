@@ -5,9 +5,17 @@ services:
     ports:
       - 80:80
       - 443:443
+    restart: always
       
   couchdb: 
     image: couchdb:2.3.0
     environment:
       COUCHDB_USER: ${COUCHDB_USER} 
       COUCHDB_PASSWORD: ${COUCHDB_PASSWORD}
+    volumes:
+      - datavolume:/opt/couchdb/data
+    restart: always
+      
+
+volumes:
+  datavolume:
