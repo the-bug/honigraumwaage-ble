@@ -13,7 +13,8 @@ import { take } from 'rxjs/operators';
 export class SendDialogComponent implements OnInit {
 
   countDown: Subscription;
-  counter = 5;
+  private readonly delay = 7;
+  counter = this.delay;
 
   sending = false;
   sendError;
@@ -26,7 +27,7 @@ export class SendDialogComponent implements OnInit {
     this.countDown = timer(0, 1000)
       .pipe(take(this.counter + 1))
       .subscribe(val => {
-        this.counter = 5 - val;
+        this.counter = this.delay - val;
         if (this.counter === 0) {
           this.send();
         }
@@ -47,7 +48,7 @@ export class SendDialogComponent implements OnInit {
 
   private send() {
     this.sending = true;
-    this.couchDBService.send(this.data.weight, this.data.hiveMark).subscribe(_ => {
+    this.couchDBService.send(this.data).subscribe(_ => {
       this.sending = false;
       this.close();
     }, error => {

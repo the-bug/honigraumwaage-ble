@@ -1,40 +1,46 @@
 
-<mat-grid-list cols="1" rowHeight="90px">
+<mat-grid-list cols="2" rowHeight="90px">
 
-  <mat-grid-tile>
+  <mat-grid-tile [colspan]=2>
     <h1>Honigraumwaage</h1>
   </mat-grid-tile>
 
-  <mat-grid-tile *ngIf="!bleConnectionEstablished && !bleIsConnecting">
+  <mat-grid-tile [colspan]=2 *ngIf="!bleConnectionEstablished && !bleIsConnecting">
     <button mat-raised-button color="primary" (click)="connectBLE()">Verbinden</button>
   </mat-grid-tile>
 
-  <mat-grid-tile *ngIf="bleIsConnecting">
+  <mat-grid-tile [colspan]=2 *ngIf="bleIsConnecting">
     <mat-spinner [diameter]="80"></mat-spinner>
   </mat-grid-tile>
 
-  <mat-grid-tile *ngIf="bleError && !bleIsConnecting">
+  <mat-grid-tile [colspan]=2 *ngIf="bleError && !bleIsConnecting">
     Es kam zu dem untenstehenden Fehler bei der Bluetooth-Verbindung.
     Vielleicht einfach nochmal probieren....
     <pre>{{bleError | json}}</pre>
   </mat-grid-tile>
 
   <div *ngIf="bleConnectionEstablished">
-    <mat-grid-tile>
+    <mat-grid-tile [colspan]=1>
       <mat-form-field class="input-width">
         <input matInput readonly placeholder="Gewicht" [value]="weight">
         <span matSuffix>Kg</span>
       </mat-form-field>
     </mat-grid-tile>
 
-    <mat-grid-tile>
+    <mat-grid-tile [colspan]=1>
       <mat-form-field class="input-width">
-        <input type="number" matInput placeholder="Nummer" [(ngModel)]="number">
+        <input type="number" matInput placeholder="Honigraumnummer" [(ngModel)]="number">
       </mat-form-field>
     </mat-grid-tile>
 
-    <mat-grid-tile>
-      <button mat-raised-button color="primary" (click)="send()" [disabled]="!number || !weight">Senden</button>
+    <mat-grid-tile [colspan]=1>
+      <mat-form-field class="input-width">
+        <input type="number" min="1" max="6" matInput placeholder="Wirrbaunote" [(ngModel)]="wirrbaunote">
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]=1 [rowspan] = "1">
+      <button mat-raised-button color="primary" (click)="send()" [disabled]="!wirrbaunote || !number || !weight">Senden</button>
     </mat-grid-tile>
   </div>
 </mat-grid-list>

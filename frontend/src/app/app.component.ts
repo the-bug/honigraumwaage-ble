@@ -16,6 +16,7 @@ export class AppComponent {
 
   weight = '';
   number: number;
+  wirrbaunote: number;
 
   bleError: any;
   bleConnectionEstablished = false;
@@ -44,7 +45,12 @@ export class AppComponent {
   }
 
   send() {
-    this.sendDialogService.send(this.weight, this.number);
+    this.sendDialogService.send({
+      hiveMark: this.number,
+      weight: this.weight,
+      wirrbau: this.wirrbaunote,
+      date: new Date()
+    });
     this.number = null;
   }
 

@@ -1,6 +1,7 @@
 import { SendDialogComponent } from './send-dialog/send-dialog.component';
 import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
+import { SendDialogData } from './send-dialog/send-dialog-data';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +14,10 @@ export class SendDialogService {
     private dialog: MatDialog
   ) { }
 
-  public send(weight: string, hiveMark: number) {
+  public send(data: SendDialogData) {
     this.dialogRef = this.dialog.open(SendDialogComponent, {
       width: '250px',
-      data: { weight: weight, hiveMark: hiveMark }
+      data: data
     });
   }
 }
