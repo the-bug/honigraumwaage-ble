@@ -1,5 +1,5 @@
 export interface SendDialogData {
-    weight: string,
+    weight: number,
     hiveMark: number,
     date: Date,
     wirrbau: number

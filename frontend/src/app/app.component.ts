@@ -14,7 +14,10 @@ export class AppComponent {
   static GATT_CHARACTERISTIC = '0000ffe1-0000-1000-8000-00805f9b34fb';
   static GATT_PRIMARY_SERVICE = '0000ffe0-0000-1000-8000-00805f9b34fb';
 
-  weight = '';
+  calibrationWeight = 0;
+  isCalibrated = false;
+
+  weight: number;
   number: number;
   wirrbaunote: number;
 
@@ -34,7 +37,7 @@ export class AppComponent {
     this.bleIsConnecting = true;
     this.bleError = null;
     this.value().subscribe(v => {
-      this.weight = this.decoder.decode(v);
+      this.weight = parseFloat(this.decoder.decode(v)) - this.calibrationWeight;
       this.bleConnectionEstablished = true;
       this.bleIsConnecting = false;
     }, error => {
@@ -42,6 +45,11 @@ export class AppComponent {
       this.bleConnectionEstablished = false;
       this.bleIsConnecting = false;
     })
+  }
+
+  calibrate() {
+    this.isCalibrated = true;
+    this.calibrationWeight = this.weight;
   }
 
   send() {
