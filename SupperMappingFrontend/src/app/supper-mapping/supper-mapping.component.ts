@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
+import { SendSupperMappingService } from './send-supper-mapping.service';
 
 @Component({
   selector: 'app-supper-mapping',
@@ -12,7 +13,9 @@ export class SupperMappingComponent implements OnInit {
 
   @ViewChild('f') myNgForm;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,
+    private sendSupperMappingService: SendSupperMappingService
+  ) { }
 
   ngOnInit() {
     this.buildDefaultForm();
@@ -26,10 +29,19 @@ export class SupperMappingComponent implements OnInit {
     return this.form.get('supperMarks') as FormArray;
   }
 
+  get hiveMark() {
+    return this.form.get('hiveMark') as FormControl;
+  }
+
   onSubmit() {
-    console.warn(this.form.value);
-    this.buildDefaultForm();
-    this.myNgForm.resetForm();
+    this.sendSupperMappingService.send({
+      hiveMark: this.hiveMark.value,
+      supperMarks: this.supperMarks.value
+    }).subscribe(i => {
+      console.log(i)
+      this.buildDefaultForm();
+      this.myNgForm.resetForm();
+    });
   }
 
   private buildDefaultForm() {

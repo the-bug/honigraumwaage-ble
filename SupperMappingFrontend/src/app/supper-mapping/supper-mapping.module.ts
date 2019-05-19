@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SupperMappingComponent } from './supper-mapping.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material.modul';
+import { SendSupperMappingService } from './send-supper-mapping.service';
 
 @NgModule({
   imports: [
@@ -10,6 +11,9 @@ import { MaterialModule } from '../material.modul';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
+  ],
+  providers: [
+    SendSupperMappingService
   ],
   declarations: [SupperMappingComponent],
   exports: [SupperMappingComponent]
