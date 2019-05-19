@@ -16,8 +16,16 @@ export class SendSupperMappingService {
     this.createDatabase();
   }
 
+  getAll(): Observable<Array<SupperMappingForSendAndSave>> {
+    return from(this.db.supperMapping.toArray());
+  }
+
   send(supperMapping: SupperMapping): Observable<any> {
     return from(this.addToIndexedDb(supperMapping));
+  }
+
+  delete(id:string) {
+    return from(this.db.supperMapping.delete(id));
   }
 
   private addToIndexedDb(supperMapping: SupperMapping) {
@@ -30,6 +38,7 @@ export class SendSupperMappingService {
     this.db.version(1).stores({
       supperMapping: 'id,hiveMark,supperMarks'
     });
-  } y
+  }
+
 
 }
