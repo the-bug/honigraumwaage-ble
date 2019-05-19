@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
-import { SendSupperMappingService } from './send-supper-mapping.service';
+import { SendSupperMappingService } from '../common/send-supper-mapping.service';
 
 @Component({
   selector: 'app-supper-mapping',
