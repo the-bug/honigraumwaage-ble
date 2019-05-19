@@ -11,6 +11,7 @@ export class SupperMappingComponent implements OnInit {
 
   form: FormGroup;
 
+  // for reseting validation in UI
   @ViewChild('f') myNgForm;
 
   constructor(private fb: FormBuilder,
@@ -29,18 +30,21 @@ export class SupperMappingComponent implements OnInit {
     return this.form.get('supperMarks') as FormArray;
   }
 
-  get hiveMark() {
+  private get hiveMark() {
     return this.form.get('hiveMark') as FormControl;
   }
 
   onSubmit() {
+    // Maybe handle async behavior with spinner?
+    // but as the resolving is fast it may be better without
     this.sendSupperMappingService.send({
       hiveMark: this.hiveMark.value,
       supperMarks: this.supperMarks.value
     }).subscribe(i => {
-      console.log(i)
       this.buildDefaultForm();
       this.myNgForm.resetForm();
+    }, e => {
+      console.error('Error: ' + (e.stack || e));
     });
   }
 
