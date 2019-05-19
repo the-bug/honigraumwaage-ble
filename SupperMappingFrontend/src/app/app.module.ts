@@ -4,9 +4,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { SupperMappingModule } from './supper-mapping/supper-mapping.module';
 import { SupperMappingComponent } from './supper-mapping/supper-mapping.component';
 import { HomeComponent } from './home/home.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from './material.modul';
+import { SendSupperMappingService } from './supper-mapping/send-supper-mapping.service';
 
 
 
@@ -26,17 +28,22 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    SupperMappingComponent
   ],
   imports: [
     RouterModule.forRoot(
       appRoutes,
     ),
     BrowserModule,
-    SupperMappingModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MaterialModule,
   ],
-  providers: [],
+  providers: [
+    SendSupperMappingService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
