@@ -10,6 +10,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material.modul';
 import { SendSupperMappingService } from './common/send-supper-mapping.service';
 import { OverviewComponent } from './overview/overview.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 
@@ -42,7 +44,8 @@ const appRoutes: Routes = [
       BrowserAnimationsModule,
       FormsModule,
       ReactiveFormsModule,
-      MaterialModule
+      MaterialModule,
+      ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
    ],
    providers: [
       SendSupperMappingService
