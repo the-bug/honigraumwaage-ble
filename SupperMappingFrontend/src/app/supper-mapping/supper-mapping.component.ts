@@ -19,7 +19,7 @@ export class SupperMappingComponent implements OnInit {
   }
 
   addSupperMark() {
-    this.supperMarks.push(this.fb.control('', Validators.required));
+    this.supperMarks.push(this.fb.control(''));
   }
 
   get supperMarks() {

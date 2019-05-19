@@ -1,21 +1,34 @@
-<h1>Volknummer zu Honigraum</h1>
+<mat-grid-list cols="3" rowHeight="90px">
 
-<form [formGroup]="form" (ngSubmit)="onSubmit()" #f="ngForm">
-  <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Senden</button>
-  
-  <mat-form-field>
-    <input type="number" matInput placeholder="Kastennummer" formControlName="hiveMark">
-  </mat-form-field>
+  <mat-grid-tile [colspan]=3>
+    <h1>Volknummer zu Honigraum</h1>
+  </mat-grid-tile>
 
-  
-  <div formArrayName="supperMarks">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" #f="ngForm">
 
-    <div *ngFor="let s of supperMarks.controls; let i=index">
+
+    <mat-grid-tile [colspan]=2>
       <mat-form-field>
-        <input type="number" matInput placeholder="Honigraumnummer" [formControlName]="i">
+        <input type="number" matInput placeholder="Kastennummer" formControlName="hiveMark">
       </mat-form-field>
-    </div>
-    <button mat-raised-button type="button" color="primary" (click)="addSupperMark()">Honigraum hinzufügen</button>
-  </div>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]=1>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Senden</button>
+    </mat-grid-tile>
 
-</form>
+      <div formArrayName="supperMarks">
+        <div *ngFor="let s of supperMarks.controls; let i=index">
+            <mat-grid-tile [colspan]=3>
+          <mat-form-field>
+            <input type="number" matInput placeholder="Honigraumnummer" [formControlName]="i">
+          </mat-form-field>
+        </mat-grid-tile>
+        </div>
+      </div>
+
+    <mat-grid-tile [colspan]=3>
+      <button mat-raised-button type="button" color="primary" (click)="addSupperMark()">Honigraum hinzufügen</button>
+    </mat-grid-tile>
+  </form>
+
+</mat-grid-list>
