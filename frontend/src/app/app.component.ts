@@ -57,7 +57,13 @@ export class AppComponent {
       hiveMark: this.number,
       weight: this.weight,
       wirrbau: this.wirrbaunote,
-      date: new Date()
+      date: new Date(),
+      type: 'wiegung',
+      schleuderung: {
+        jahr: '2019',
+        sorte: 'Raps-1',
+        standort: 'Schupf'
+      }
     });
     this.number = null;
   }
