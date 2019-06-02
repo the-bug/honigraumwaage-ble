@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material';
 import { map, mergeMap } from 'rxjs/operators';
 import { BluetoothCore } from '@manekinekko/angular-web-bluetooth';
 import { SendDialogService } from './send-dialog.service';
+import { Schleuderung } from './send-dialog/send-dialog-data';
 
 @Component({
   selector: 'app-root',
@@ -26,6 +27,8 @@ export class AppComponent {
   bleIsConnecting = false;
 
   decoder = new TextDecoder();
+
+  schleuderung: Schleuderung;
 
   constructor(
     private snackBar: MatSnackBar,
@@ -59,11 +62,7 @@ export class AppComponent {
       wirrbau: this.wirrbaunote,
       date: new Date(),
       type: 'wiegung',
-      schleuderung: {
-        jahr: '2019',
-        sorte: 'Raps-1',
-        standort: 'Schupf'
-      }
+      schleuderung: this.schleuderung
     });
     this.number = null;
   }
@@ -97,6 +96,10 @@ export class AppComponent {
         map((value: DataView) => value
         )
       )
+  }
+
+  schleuderungSelected(event: Schleuderung) {
+    this.schleuderung = event;
   }
 
 }

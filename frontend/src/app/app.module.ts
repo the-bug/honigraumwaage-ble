@@ -12,11 +12,13 @@ import { FormsModule } from '@angular/forms';
 import { WebBluetoothModule } from '@manekinekko/angular-web-bluetooth';
 import { HttpClientModule } from '@angular/common/http';
 import { SendDialogComponent } from './send-dialog/send-dialog.component';
+import { SchleuderungSelectionComponent } from './schleuderung-selection/schleuderung-selection.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SendDialogComponent
+    SendDialogComponent,
+    SchleuderungSelectionComponent
   ],
   imports: [
     BrowserModule,
