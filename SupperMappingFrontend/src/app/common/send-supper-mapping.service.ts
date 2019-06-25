@@ -16,7 +16,7 @@ export class SendSupperMappingService {
     this.createDatabase();
   }
 
-  getAll(): Observable<Array<SupperMappingForSendAndSave>> {
+  getAll(): Observable<any> {
     return from(this.db.supperMapping.toArray());
   }
 

@@ -12,7 +12,7 @@ export class SupperMappingComponent implements OnInit {
   form: FormGroup;
 
   // for reseting validation in UI
-  @ViewChild('f') myNgForm;
+  @ViewChild('f', { static: true }) myNgForm;
 
   constructor(private fb: FormBuilder,
     private sendSupperMappingService: SendSupperMappingService
