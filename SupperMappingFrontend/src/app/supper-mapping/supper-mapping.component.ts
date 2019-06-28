@@ -39,7 +39,7 @@ export class SupperMappingComponent implements OnInit {
     // but as the resolving is fast it may be better without
     this.sendSupperMappingService.send({
       hiveMark: this.hiveMark.value,
-      supperMarks: this.supperMarks.value
+      supperMarks: this.supperMarks.value.filter((i: any) => i!='')
     }).subscribe(i => {
       this.buildDefaultForm();
       this.myNgForm.resetForm();
