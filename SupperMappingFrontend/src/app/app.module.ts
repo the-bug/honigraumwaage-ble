@@ -12,12 +12,14 @@ import { SendSupperMappingService } from './common/send-supper-mapping.service';
 import { OverviewComponent } from './overview/overview.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { CreateHarvestComponent } from './create-harvest/create-harvest.component';
 
 
 
 const appRoutes: Routes = [
    { path: 'enter', component: SupperMappingComponent },
    { path: 'overview', component: OverviewComponent },
+   { path: 'create-harvest', component: CreateHarvestComponent },
    { path: '', component: HomeComponent },
    {
       path: '',
@@ -35,7 +37,8 @@ const appRoutes: Routes = [
       AppComponent,
       HomeComponent,
       SupperMappingComponent,
-      OverviewComponent
+      OverviewComponent,
+      CreateHarvestComponent
    ],
    imports: [
       RouterModule.forRoot(appRoutes,
