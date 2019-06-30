@@ -24,7 +24,7 @@ export class SendSupperMappingService {
     return from(this.addToIndexedDb(supperMapping));
   }
 
-  delete(id:string) {
+  delete(id: string) {
     return from(this.db.supperMapping.delete(id));
   }
 

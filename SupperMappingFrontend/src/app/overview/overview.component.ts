@@ -15,7 +15,8 @@ export class OverviewComponent implements OnInit {
   // for reseting validation in UI
   @ViewChild('f', { static: true }) myNgForm;
 
-  constructor(private fb: FormBuilder,
+  constructor(
+    private fb: FormBuilder,
     private sendSupperMappingService: SendSupperMappingService
   ) { }
 
@@ -26,7 +27,7 @@ export class OverviewComponent implements OnInit {
 
   private loadMappings() {
     this.sendSupperMappingService.getAll().subscribe(i => {
-      for (let j of i) {
+      for (const j of i) {
         this.addSupperMapping(j);
       }
     });
@@ -51,7 +52,7 @@ export class OverviewComponent implements OnInit {
   }
 
   delete(id: string) {
-    this.sendSupperMappingService.delete(id).subscribe( () => {
+    this.sendSupperMappingService.delete(id).subscribe(() => {
       this.buildDefaultForm();
       this.myNgForm.resetForm();
       this.loadMappings();

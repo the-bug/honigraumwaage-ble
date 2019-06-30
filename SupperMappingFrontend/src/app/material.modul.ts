@@ -80,7 +80,7 @@ import { MatTreeModule } from '@angular/material/tree';
         MatToolbarModule,
         MatTooltipModule,
         MatTreeModule,
-        ScrollingModule,],
+        ScrollingModule],
     exports: [
         A11yModule,
         CdkTableModule,

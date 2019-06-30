@@ -14,7 +14,8 @@ export class SupperMappingComponent implements OnInit {
   // for reseting validation in UI
   @ViewChild('f', { static: true }) myNgForm;
 
-  constructor(private fb: FormBuilder,
+  constructor(
+    private fb: FormBuilder,
     private sendSupperMappingService: SendSupperMappingService
   ) { }
 
@@ -39,7 +40,7 @@ export class SupperMappingComponent implements OnInit {
     // but as the resolving is fast it may be better without
     this.sendSupperMappingService.send({
       hiveMark: this.hiveMark.value,
-      supperMarks: this.supperMarks.value.filter((i: any) => i!='')
+      supperMarks: this.supperMarks.value.filter((i: any) => i !== '')
     }).subscribe(i => {
       this.buildDefaultForm();
       this.myNgForm.resetForm();
