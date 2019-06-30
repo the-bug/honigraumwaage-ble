@@ -13,6 +13,7 @@ import { OverviewComponent } from './overview/overview.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { CreateHarvestComponent } from './create-harvest/create-harvest.component';
+import { HarvestDataService } from './common/harvest-data.service';
 
 
 
@@ -51,7 +52,8 @@ const appRoutes: Routes = [
       ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
    ],
    providers: [
-      SendSupperMappingService
+      SendSupperMappingService,
+      HarvestDataService
    ],
    bootstrap: [
       AppComponent

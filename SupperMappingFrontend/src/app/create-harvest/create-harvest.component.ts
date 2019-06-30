@@ -1,25 +1,44 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { HarvestDataService } from '../common/harvest-data.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-create-harvest',
   templateUrl: './create-harvest.component.html',
   styleUrls: ['./create-harvest.component.css']
 })
-export class CreateHarvestComponent implements OnInit {
+export class CreateHarvestComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
+  schleuderungSubscription: Subscription;
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private harvestDataService: HarvestDataService
   ) { }
 
   ngOnInit() {
     this.buildDefaultForm();
+    this.subscripeToSchleuderung();
   }
 
+  ngOnDestroy() {
+    this.schleuderungSubscription.unsubscribe();
+  }
 
   onSubmit() {
+    this.harvestDataService.announceMission(this.form.value);
+  }
+
+  private subscripeToSchleuderung() {
+    this.schleuderungSubscription = this.harvestDataService.schleuderung$.subscribe(s => {
+      this.form.patchValue({
+        jahr: s.jahr,
+        sorte: s.sorte,
+        standort: s.standort
+      });
+    });
   }
 
   private buildDefaultForm() {

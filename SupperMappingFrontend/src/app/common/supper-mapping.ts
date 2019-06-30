@@ -4,7 +4,7 @@ export interface SupperMapping {
 }
 
 export interface Schleuderung {
-    jahr: string;
+    jahr: number;
     sorte: string;
     standort: string;
 }
