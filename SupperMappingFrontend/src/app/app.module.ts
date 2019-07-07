@@ -14,6 +14,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { CreateHarvestComponent } from './create-harvest/create-harvest.component';
 import { HarvestDataService } from './common/harvest-data.service';
+import { SendComponent } from './send/send.component';
 
 
 
@@ -21,6 +22,7 @@ const appRoutes: Routes = [
    { path: 'enter', component: SupperMappingComponent },
    { path: 'overview', component: OverviewComponent },
    { path: 'create-harvest', component: CreateHarvestComponent },
+   { path: 'send', component: SendComponent },
    { path: '', component: HomeComponent },
    {
       path: '',
@@ -39,7 +41,8 @@ const appRoutes: Routes = [
       HomeComponent,
       SupperMappingComponent,
       OverviewComponent,
-      CreateHarvestComponent
+      CreateHarvestComponent,
+      SendComponent
    ],
    imports: [
       RouterModule.forRoot(appRoutes,
@@ -50,6 +53,7 @@ const appRoutes: Routes = [
       ReactiveFormsModule,
       MaterialModule,
       ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+
    ],
    providers: [
       SendSupperMappingService,
