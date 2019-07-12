@@ -28,7 +28,7 @@ export class CreateHarvestComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    this.harvestDataService.announceMission(this.form.value);
+    this.harvestDataService.announceSchleuderung(this.form.value);
   }
 
   private subscripeToSchleuderung() {

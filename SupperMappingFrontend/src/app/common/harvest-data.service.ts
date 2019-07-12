@@ -20,7 +20,7 @@ export class HarvestDataService {
 
   constructor() { }
 
-  announceMission(schleuderung: Schleuderung) {
+  announceSchleuderung(schleuderung: Schleuderung) {
     this.schleuderungSource.next(schleuderung);
   }
 
