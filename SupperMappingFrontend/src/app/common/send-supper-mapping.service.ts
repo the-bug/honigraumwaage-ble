@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { UUID } from 'angular2-uuid';
 import Dexie from 'dexie';
-import { SupperMapping } from './supper-mapping';
+import { SupperMapping } from './model/supper-mapping';
 import { Observable, from } from 'rxjs';
-import { SupperMappingForSave } from './supper-mapping-for-send-and-save';
+import { SupperMappingForSave } from './model/supper-mapping-for-send-and-save';
 
 @Injectable({
   providedIn: 'root'

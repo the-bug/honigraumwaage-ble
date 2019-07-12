@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Schleuderung } from './supper-mapping';
+import { Schleuderung } from './model/schleuderung';
 
 @Injectable({
   providedIn: 'root'
