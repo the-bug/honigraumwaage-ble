@@ -4,8 +4,8 @@
     <h1>Volknummer zu Honigraum</h1>
   </mat-grid-tile>
 
-  <form [formGroup]="form" (ngSubmit)="onSubmit()" #f="ngForm">
-
+  <!-- schleuderungAktive -> main part -->
+  <form *ngIf="schleuderungAktive" [formGroup]="form" (ngSubmit)="onSubmit()" #f="ngForm">
 
     <mat-grid-tile [colspan]=2>
       <mat-form-field>
@@ -16,19 +16,29 @@
       <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Senden</button>
     </mat-grid-tile>
 
-      <div formArrayName="supperMarks">
-        <div *ngFor="let s of supperMarks.controls; let i=index">
-            <mat-grid-tile [colspan]=3>
+    <div formArrayName="supperMarks">
+      <div *ngFor="let s of supperMarks.controls; let i=index">
+        <mat-grid-tile [colspan]=3>
           <mat-form-field>
             <input type="number" matInput placeholder="Honigraumnummer" [formControlName]="i">
           </mat-form-field>
         </mat-grid-tile>
-        </div>
       </div>
+    </div>
 
     <mat-grid-tile [colspan]=3>
       <button mat-raised-button type="button" color="primary" (click)="addSupperMark()">Honigraum hinzufügen</button>
     </mat-grid-tile>
   </form>
+
+  <!-- No schleuderungAktive, this may be an extra component which bind to schleuderung aktive -->
+  <ng-container *ngIf="!schleuderungAktive">
+    <mat-grid-tile [colspan]=3>
+      <h2>Es wurde keine Schleuderung eingegeben!</h2>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]=3>
+      <h3>Bitte gehen Sie ins Hauptmenu und geben Sie eine Schleuderung ein!</h3>
+    </mat-grid-tile>
+  </ng-container>
 
 </mat-grid-list>

@@ -1,26 +1,47 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { FormControl, FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { SendSupperMappingService } from '../common/send-supper-mapping.service';
+import { SchleuderungDataService } from '../common/schleuderung-data.service';
+import { Subscription } from 'rxjs';
+import { Schleuderung } from '../common/model/schleuderung';
 
 @Component({
   selector: 'app-supper-mapping',
   templateUrl: './supper-mapping.component.html',
   styleUrls: ['./supper-mapping.component.css']
 })
-export class SupperMappingComponent implements OnInit {
+export class SupperMappingComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
+  schleuderungSubscription: Subscription;
+  schleuderung: Schleuderung;
+  schleuderungAktive = false;
 
   // for reseting validation in UI
   @ViewChild('f', { static: true }) myNgForm;
 
   constructor(
     private fb: FormBuilder,
-    private sendSupperMappingService: SendSupperMappingService
+    private sendSupperMappingService: SendSupperMappingService,
+    private harvestDataService: SchleuderungDataService
   ) { }
 
   ngOnInit() {
     this.buildDefaultForm();
+    this.subscripeToSchleuderung();
+  }
+
+  ngOnDestroy() {
+    this.schleuderungSubscription.unsubscribe();
+  }
+
+  private subscripeToSchleuderung() {
+    this.schleuderungSubscription = this.harvestDataService.schleuderung$.subscribe(s => {
+      this.schleuderung = s;
+      if (s.sorte !== '' && s.standort !== '') {
+        this.schleuderungAktive = true;
+      }
+    });
   }
 
   addSupperMark() {
