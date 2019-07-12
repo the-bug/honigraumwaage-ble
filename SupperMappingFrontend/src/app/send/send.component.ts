@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SendSupperMappingService } from '../common/send-supper-mapping.service';
 import { SupperMapping, Schleuderung } from '../common/supper-mapping';
-import { CouchDBService } from './couch-db.service';
+import { CouchDBService } from '../common/couch-db.service';
 import { HarvestDataService } from '../common/harvest-data.service';
 
 @Component({

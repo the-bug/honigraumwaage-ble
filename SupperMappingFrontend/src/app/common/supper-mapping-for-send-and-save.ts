@@ -1,5 +1,5 @@
 import { SupperMapping } from './supper-mapping';
 
-export interface SupperMappingForSendAndSave extends SupperMapping {
+export interface SupperMappingForSave extends SupperMapping {
     id: string;
 }

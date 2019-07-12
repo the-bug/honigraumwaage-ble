@@ -3,7 +3,7 @@ import { UUID } from 'angular2-uuid';
 import Dexie from 'dexie';
 import { SupperMapping } from './supper-mapping';
 import { Observable, from } from 'rxjs';
-import { SupperMappingForSendAndSave } from './supper-mapping-for-send-and-save';
+import { SupperMappingForSave } from './supper-mapping-for-send-and-save';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +29,7 @@ export class SendSupperMappingService {
   }
 
   private addToIndexedDb(supperMapping: SupperMapping) {
-    const toAdd = { ...supperMapping, id: UUID.UUID() } as SupperMappingForSendAndSave;
+    const toAdd = { ...supperMapping, id: UUID.UUID() } as SupperMappingForSave;
     return this.db.supperMapping.add(toAdd);
   }
 
