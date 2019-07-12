@@ -3,7 +3,7 @@ import { UUID } from 'angular2-uuid';
 import Dexie from 'dexie';
 import { SupperMapping } from './model/supper-mapping';
 import { Observable, from } from 'rxjs';
-import { SupperMappingForSave } from './model/supper-mapping-for-send-and-save';
+import { SupperMappingForSave } from './model/supper-mapping-for-save';
 
 @Injectable({
   providedIn: 'root'

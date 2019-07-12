@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { SendSupperMappingService } from '../common/send-supper-mapping.service';
-import { SupperMappingForSave } from '../common/model/supper-mapping-for-send-and-save';
+import { SupperMappingForSave } from '../common/model/supper-mapping-for-save';
 
 @Component({
   selector: 'app-overview',
