@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { UUID } from 'angular2-uuid';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { SupperMappingForSaveAndSend } from './model/supper-mapping-for-save-and-send';
@@ -16,7 +15,12 @@ export class CouchDBService {
   constructor(private http: HttpClient) { }
 
   public sendSupperMappingForSaveAndSend(supperMappingForSaveAndSend: SupperMappingForSaveAndSend): Observable<any> {
-    const uuid = UUID.UUID();
-    return this.http.put(`${this.url}/${this.database}/${uuid}`, supperMappingForSaveAndSend);
+    const dataToSend : SupperMappingForSaveAndSend = {
+      hiveMark: supperMappingForSaveAndSend.hiveMark,
+      type: supperMappingForSaveAndSend.type,
+      supperMarks: supperMappingForSaveAndSend.supperMarks,
+      schleuderung: supperMappingForSaveAndSend.schleuderung
+    };
+    return this.http.put(`${this.url}/${this.database}/${supperMappingForSaveAndSend.id}`, dataToSend);
   }
 }
