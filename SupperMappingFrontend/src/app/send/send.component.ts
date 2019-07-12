@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { SendSupperMappingService } from '../common/send-supper-mapping.service';
-import { SupperMapping } from '../common/model/supper-mapping';
 import { CouchDBService } from '../common/couch-db.service';
 import { SchleuderungDataService } from '../common/schleuderung-data.service';
 import { Schleuderung } from '../common/model/schleuderung';
@@ -32,7 +31,7 @@ export class SendComponent implements OnInit {
       allMapping.forEach(mapping => {
         const supperMappingForSaveAndSend: SupperMappingForSaveAndSend = {
           ...mapping,
-          type: 'ernte',
+          type: 'ernte Test',
           schleuderung: this.schleuderung
         };
         this.couchDbService.sendSupperMappingForSaveAndSend(supperMappingForSaveAndSend).subscribe(_ => {

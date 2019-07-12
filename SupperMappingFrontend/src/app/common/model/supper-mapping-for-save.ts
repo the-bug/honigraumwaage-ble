@@ -1,5 +1,5 @@
-import { SupperMapping } from './supper-mapping';
-
-export interface SupperMappingForSave extends SupperMapping {
+export interface SupperMappingForSave {
+    hiveMark: number;
+    supperMarks: Array<number>;
     id: string;
 }

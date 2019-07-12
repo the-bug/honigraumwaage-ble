@@ -4,6 +4,8 @@ import { SendSupperMappingService } from '../common/send-supper-mapping.service'
 import { SchleuderungDataService } from '../common/schleuderung-data.service';
 import { Subscription } from 'rxjs';
 import { Schleuderung } from '../common/model/schleuderung';
+import { SupperMappingForSave } from '../common/model/supper-mapping-for-save';
+import { UUID } from 'angular2-uuid';
 
 @Component({
   selector: 'app-supper-mapping',
@@ -57,12 +59,14 @@ export class SupperMappingComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    // Maybe handle async behavior with spinner?
-    // but as the resolving is fast it may be better without
-    this.sendSupperMappingService.send({
+    const supperMapping: SupperMappingForSave = {
+      id: UUID.UUID(),
       hiveMark: this.hiveMark.value,
       supperMarks: this.supperMarks.value.filter((i: any) => i !== '')
-    }).subscribe(i => {
+    };
+    // Maybe handle async behavior with spinner?
+    // but as the resolving is fast it may be better without
+    this.sendSupperMappingService.send(supperMapping).subscribe(i => {
       this.buildDefaultForm();
       this.myNgForm.resetForm();
     }, e => {
