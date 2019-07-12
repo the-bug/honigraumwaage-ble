@@ -5,7 +5,7 @@ import { Schleuderung } from './model/schleuderung';
 @Injectable({
   providedIn: 'root'
 })
-export class HarvestDataService {
+export class SchleuderungDataService {
 
   // Maybe the first Input should be stored in an indexedDB....
   private schleuderungSource = new BehaviorSubject<Schleuderung>(

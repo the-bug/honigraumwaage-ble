@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SendSupperMappingService } from '../common/send-supper-mapping.service';
 import { SupperMapping } from '../common/model/supper-mapping';
 import { CouchDBService } from '../common/couch-db.service';
-import { HarvestDataService } from '../common/harvest-data.service';
+import { SchleuderungDataService } from '../common/schleuderung-data.service';
 import { Schleuderung } from '../common/model/schleuderung';
 import { SupperMappingForSaveAndSend } from '../common/model/supper-mapping-for-save-and-send';
 import { SupperMappingForSave } from '../common/model/supper-mapping-for-save';
@@ -19,7 +19,7 @@ export class SendComponent implements OnInit {
   constructor(
     private sendSupperMappingService: SendSupperMappingService,
     private couchDbService: CouchDBService,
-    private harvestDataService: HarvestDataService
+    private harvestDataService: SchleuderungDataService
   ) { }
 
   ngOnInit() {

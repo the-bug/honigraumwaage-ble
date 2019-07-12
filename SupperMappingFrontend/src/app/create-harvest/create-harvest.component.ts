@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { HarvestDataService } from '../common/harvest-data.service';
+import { SchleuderungDataService } from '../common/schleuderung-data.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -15,7 +15,7 @@ export class CreateHarvestComponent implements OnInit, OnDestroy {
 
   constructor(
     private fb: FormBuilder,
-    private harvestDataService: HarvestDataService
+    private harvestDataService: SchleuderungDataService
   ) { }
 
   ngOnInit() {

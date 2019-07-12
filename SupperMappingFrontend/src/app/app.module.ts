@@ -13,7 +13,7 @@ import { OverviewComponent } from './overview/overview.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { CreateHarvestComponent } from './create-harvest/create-harvest.component';
-import { HarvestDataService } from './common/harvest-data.service';
+import { SchleuderungDataService } from './common/schleuderung-data.service';
 import { SendComponent } from './send/send.component';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -59,7 +59,7 @@ const appRoutes: Routes = [
    ],
    providers: [
       SendSupperMappingService,
-      HarvestDataService
+      SchleuderungDataService
    ],
    bootstrap: [
       AppComponent
