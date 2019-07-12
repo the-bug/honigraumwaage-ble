@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  couchDb_Url: '/db',
+  couchDb_database: 'honigraeume'
 };

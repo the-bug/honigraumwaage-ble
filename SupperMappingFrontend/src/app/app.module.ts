@@ -15,6 +15,7 @@ import { environment } from '../environments/environment';
 import { CreateHarvestComponent } from './create-harvest/create-harvest.component';
 import { HarvestDataService } from './common/harvest-data.service';
 import { SendComponent } from './send/send.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -52,6 +53,7 @@ const appRoutes: Routes = [
       FormsModule,
       ReactiveFormsModule,
       MaterialModule,
+      HttpClientModule,
       ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
 
    ],
