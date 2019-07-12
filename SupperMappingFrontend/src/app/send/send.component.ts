@@ -39,11 +39,11 @@ export class SendComponent implements OnInit {
           // this.sendSupperMappingService.delete(mapping.id).subscribe( _ => { });
         });
 
-      })
+      });
 
-    })
+    });
 
-  };
+  }
 
 
 }
