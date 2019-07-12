@@ -1,7 +1,9 @@
 import { Schleuderung } from './schleuderung';
-import { SupperMappingForSave } from './supper-mapping-for-save';
 
-export interface SupperMappingForSaveAndSend extends SupperMappingForSave {
+export interface SupperMappingForSaveAndSend  {
+    hiveMark: number;
+    supperMarks: Array<number>;
+    id?: string;
     type: string;
     schleuderung: Schleuderung;
 }

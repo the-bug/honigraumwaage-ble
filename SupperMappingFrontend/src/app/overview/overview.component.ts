@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { SendSupperMappingService } from '../common/send-supper-mapping.service';
-import { SupperMappingForSave } from '../common/model/supper-mapping-for-save';
+import { SupperMappingForSaveAndSend } from '../common/model/supper-mapping-for-save-and-send';
 
 @Component({
   selector: 'app-overview',
@@ -44,7 +44,7 @@ export class OverviewComponent implements OnInit {
     return this.form.get('mappings') as FormArray;
   }
 
-  private addSupperMapping(supperMappingForSendAndSave: SupperMappingForSave) {
+  private addSupperMapping(supperMappingForSendAndSave: SupperMappingForSaveAndSend) {
     this.supperMappings.push(this.fb.control(supperMappingForSendAndSave));
   }
 

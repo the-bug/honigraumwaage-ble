@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import Dexie from 'dexie';
 import { Observable, from } from 'rxjs';
-import { SupperMappingForSave } from './model/supper-mapping-for-save';
+import { SupperMappingForSaveAndSend } from './model/supper-mapping-for-save-and-send';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,7 @@ export class SendSupperMappingService {
     return from(this.db.supperMapping.toArray());
   }
 
-  send(supperMapping: SupperMappingForSave): Observable<any> {
+  send(supperMapping: SupperMappingForSaveAndSend): Observable<any> {
     return from(this.addToIndexedDb(supperMapping));
   }
 
@@ -26,14 +26,15 @@ export class SendSupperMappingService {
     return from(this.db.supperMapping.delete(id));
   }
 
-  private addToIndexedDb(supperMapping: SupperMappingForSave) {
+  private addToIndexedDb(supperMapping: SupperMappingForSaveAndSend) {
     return this.db.supperMapping.add(supperMapping);
   }
 
   private createDatabase() {
     this.db = new Dexie('SupperMappingDatabase');
     this.db.version(1).stores({
-      supperMapping: 'id,hiveMark,supperMarks'
+      // Only Index DB. Maybe dont needed at all....
+      supperMapping: '&id'
     });
   }
 

@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { SendSupperMappingService } from '../common/send-supper-mapping.service';
 import { SchleuderungDataService } from '../common/schleuderung-data.service';
 import { Subscription } from 'rxjs';
 import { Schleuderung } from '../common/model/schleuderung';
-import { SupperMappingForSave } from '../common/model/supper-mapping-for-save';
 import { UUID } from 'angular2-uuid';
+import { SupperMappingForSaveAndSend } from '../common/model/supper-mapping-for-save-and-send';
 
 @Component({
   selector: 'app-supper-mapping',
@@ -18,9 +18,6 @@ export class SupperMappingComponent implements OnInit, OnDestroy {
   schleuderungSubscription: Subscription;
   schleuderung: Schleuderung;
   schleuderungAktive = false;
-
-  // for reseting validation in UI
-  @ViewChild('f', { static: true }) myNgForm;
 
   constructor(
     private fb: FormBuilder,
@@ -59,16 +56,17 @@ export class SupperMappingComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    const supperMapping: SupperMappingForSave = {
+    const supperMapping: SupperMappingForSaveAndSend = {
       id: UUID.UUID(),
       hiveMark: this.hiveMark.value,
-      supperMarks: this.supperMarks.value.filter((i: any) => i !== '')
+      supperMarks: this.supperMarks.value.filter((i: any) => i !== ''),
+      schleuderung: this.schleuderung,
+      type: 'ernte'
     };
     // Maybe handle async behavior with spinner?
     // but as the resolving is fast it may be better without
     this.sendSupperMappingService.send(supperMapping).subscribe(i => {
       this.buildDefaultForm();
-      this.myNgForm.resetForm();
     }, e => {
       console.error('Error: ' + (e.stack || e));
     });

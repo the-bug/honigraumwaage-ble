@@ -4,7 +4,6 @@ import { CouchDBService } from '../common/couch-db.service';
 import { SchleuderungDataService } from '../common/schleuderung-data.service';
 import { Schleuderung } from '../common/model/schleuderung';
 import { SupperMappingForSaveAndSend } from '../common/model/supper-mapping-for-save-and-send';
-import { SupperMappingForSave } from '../common/model/supper-mapping-for-save';
 
 @Component({
   selector: 'app-send',
@@ -26,22 +25,13 @@ export class SendComponent implements OnInit {
   }
 
   send() {
-
-    this.sendSupperMappingService.getAll().subscribe((allMapping: Array<SupperMappingForSave>) => {
+    this.sendSupperMappingService.getAll().subscribe((allMapping: Array<SupperMappingForSaveAndSend>) => {
       allMapping.forEach(mapping => {
-        const supperMappingForSaveAndSend: SupperMappingForSaveAndSend = {
-          ...mapping,
-          type: 'ernte Test',
-          schleuderung: this.schleuderung
-        };
-        this.couchDbService.sendSupperMappingForSaveAndSend(supperMappingForSaveAndSend).subscribe(_ => {
-          // this.sendSupperMappingService.delete(mapping.id).subscribe( _ => { });
+        this.couchDbService.sendSupperMappingForSaveAndSend(mapping).subscribe(_ => {
+          this.sendSupperMappingService.delete(mapping.id).subscribe(_ => { });
         });
-
       });
-
     });
-
   }
 
 
