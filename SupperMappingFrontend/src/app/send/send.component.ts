@@ -30,18 +30,19 @@ export class SendComponent implements OnInit {
     this.sendSupperMappingService.getAll().subscribe((allMapping: Array<SupperMappingForSaveAndSend>) => {
       allMapping.forEach(mapping => {
         this.couchDbService.sendSupperMappingForSaveAndSend(mapping).subscribe(_ => {
-          this.sendSupperMappingService.delete(mapping.id).subscribe(_ => {
+          this.sendSupperMappingService.delete(mapping.id).subscribe(__ => {
           }, error => {
-            this.error = error
+            // dont know if throw error works as expected...
+            this.error = error;
             throwError(error);
           });
         }, error => {
-          this.error = error
+          this.error = error;
           throwError(error);
         });
       });
     }, error => {
-      this.error = error
+      this.error = error;
       throwError(error);
     });
   }
