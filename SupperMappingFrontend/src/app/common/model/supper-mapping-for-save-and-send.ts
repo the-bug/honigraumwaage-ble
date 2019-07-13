@@ -1,9 +1,10 @@
 import { Schleuderung } from './schleuderung';
 
 export interface SupperMappingForSaveAndSend  {
+    id?: string;
+    date?: Date;
     hiveMark: number;
     supperMarks: Array<number>;
-    id?: string;
     type: string;
     schleuderung: Schleuderung;
 }

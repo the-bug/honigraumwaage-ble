@@ -16,6 +16,7 @@ export class CouchDBService {
 
   public sendSupperMappingForSaveAndSend(supperMappingForSaveAndSend: SupperMappingForSaveAndSend): Observable<any> {
     const dataToSend : SupperMappingForSaveAndSend = {
+      date: new Date(),
       hiveMark: supperMappingForSaveAndSend.hiveMark,
       type: supperMappingForSaveAndSend.type,
       supperMarks: supperMappingForSaveAndSend.supperMarks,
