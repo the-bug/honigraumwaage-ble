@@ -1,6 +1,6 @@
 import { SendDialogData } from './send-dialog-data';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { CouchDBService } from './../couch-db.service';
+import { CouchDBService } from '../couch-db.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { timer, Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
