@@ -5,6 +5,9 @@
     "types": [],
     "module": "esNext"
   },
+  "angularCompilerOptions": {
+    "enableIvy": true
+  },
   "exclude": [
     "test.ts",
     "**/*.spec.ts"

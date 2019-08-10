@@ -4,7 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: 'weighing',
-    loadChildren: './weighing-module/weighing-module.module#WeighingModuleModule',
+    // loadChildren:'./weighing-module/weighing-module.module#WeighingModuleModule',
+    loadChildren: () => import('./weighing-module/weighing-module.module').then(mod => mod.WeighingModuleModule),
   },
   {
     path: '',
