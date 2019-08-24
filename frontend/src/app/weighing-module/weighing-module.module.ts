@@ -24,7 +24,7 @@ const routes: Routes = [
     MaterialModule,
     FormsModule,
     WebBluetoothModule.forRoot({
-      enableTracing: true // or false, this will enable logs in the browser's console
+      enableTracing: false // or false, this will enable logs in the browser's console
     }),
     RouterModule.forChild(routes)
   ],
