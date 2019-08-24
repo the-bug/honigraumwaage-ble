@@ -18,6 +18,9 @@ export class WeighingModuleComponent {
   calibrationWeight = 0;
   isCalibrated = false;
 
+  selectionMode: SelectionMode;
+  selectionModeReady = false;
+
   weight: number;
   number: number;
   wirrbaunote: number;
@@ -31,11 +34,17 @@ export class WeighingModuleComponent {
   schleuderung: Schleuderung;
 
   constructor(
-    private readonly ble: BluetoothCore,
+    private readonly ble: BluetoothCore, 
     private sendDialogService: SendDialogService,
   ) { }
 
+  manuel() {
+    this.selectionMode = SelectionMode.Manuel;
+    this.selectionModeReady = true;
+  }
+
   connectBLE() {
+    this.selectionMode = SelectionMode.Bluetooth;
     this.bleIsConnecting = true;
     this.bleError = null;
     this.value().subscribe(v => {
@@ -52,6 +61,7 @@ export class WeighingModuleComponent {
   calibrate() {
     this.isCalibrated = true;
     this.calibrationWeight = this.weight;
+    this.selectionModeReady = true;
   }
 
   send() {
@@ -100,4 +110,21 @@ export class WeighingModuleComponent {
   schleuderungSelected(event: Schleuderung) {
     this.schleuderung = event;
   }
+
+  isManuell(): boolean {
+    if(this.selectionMode === SelectionMode.Manuel) {
+      return true;
+    }
+    return false;
+  }
+
+  setWeight(value: number) {
+    this.weight = value;
+  }
+}
+
+
+enum SelectionMode {
+  Manuel = 'Manuel',
+  Bluetooth = 'Bluetooth'
 }
