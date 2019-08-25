@@ -9,13 +9,24 @@ import { SchleuderungSelectionComponent } from './schleuderung-selection/schleud
 import { CouchDBService } from './couch-db.service';
 import { SendDialogService } from './send-dialog.service';
 import { RouterModule, Routes } from '@angular/router';
+import { WeightCommunicationService } from './weight-communication.service';
 
 const routes: Routes = [
   {
     path: '',
     component: WeighingModuleComponent,
-    pathMatch: 'full'
+    children: [
+      {
+        path: 'manuell',
+        loadChildren: () => import('./weight-manuell/weight-manuell.module').then(mod => mod.WeightManuellModule),
+      },
+      {
+        path: 'ble',
+        loadChildren: () => import('./weight-ble/weight-ble.module').then(mod => mod.WeightBleModule),
+      }
+    ]
   }
+
 ];
 
 @NgModule({
@@ -23,14 +34,12 @@ const routes: Routes = [
     CommonModule,
     MaterialModule,
     FormsModule,
-    WebBluetoothModule.forRoot({
-      enableTracing: false // or false, this will enable logs in the browser's console
-    }),
     RouterModule.forChild(routes)
   ],
   providers: [
     CouchDBService,
-    SendDialogService
+    SendDialogService,
+    WeightCommunicationService
   ],
   declarations: [
     WeighingModuleComponent,

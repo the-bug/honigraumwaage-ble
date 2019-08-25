@@ -1,22 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Schleuderung } from './send-dialog/send-dialog-data';
-import { BluetoothCore } from '@manekinekko/angular-web-bluetooth';
 import { SendDialogService } from './send-dialog.service';
-import { map, mergeMap } from 'rxjs/operators';
+import { WeightCommunicationService } from './weight-communication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-weighing-module',
   templateUrl: './weighing-module.component.html',
   styleUrls: ['./weighing-module.component.css']
 })
-export class WeighingModuleComponent {
-
-
-  static GATT_CHARACTERISTIC = '0000ffe1-0000-1000-8000-00805f9b34fb';
-  static GATT_PRIMARY_SERVICE = '0000ffe0-0000-1000-8000-00805f9b34fb';
-
-  calibrationWeight = 0;
-  isCalibrated = false;
+export class WeighingModuleComponent implements OnInit {
 
   selectionMode: SelectionMode;
   selectionModeReady = false;
@@ -25,44 +18,33 @@ export class WeighingModuleComponent {
   number: number;
   wirrbaunote: number;
 
-  bleError: any;
-  bleConnectionEstablished = false;
-  bleIsConnecting = false;
-
-  decoder = new TextDecoder();
-
   schleuderung: Schleuderung;
 
   constructor(
-    private readonly ble: BluetoothCore, 
     private sendDialogService: SendDialogService,
+    private weightCommunicationService: WeightCommunicationService,
+    private router: Router,
   ) { }
 
+  ngOnInit() {
+    // TODO unsubsribe
+    const sub1 = this.weightCommunicationService.weightAnnounced$.subscribe(w => this.weight = w);
+  }
+
   manuel() {
-    this.selectionMode = SelectionMode.Manuel;
+    // TODO fix this strange path
+    this.router.navigate(['weighing/manuell']);
     this.selectionModeReady = true;
+    this.selectionMode = SelectionMode.Manuel;
   }
 
   connectBLE() {
+    // TODO fix this strange path
+    this.router.navigate(['weighing/ble']);
+    this.selectionModeReady = true;
     this.selectionMode = SelectionMode.Bluetooth;
-    this.bleIsConnecting = true;
-    this.bleError = null;
-    this.value().subscribe(v => {
-      this.weight = parseFloat(this.decoder.decode(v)) - this.calibrationWeight;
-      this.bleConnectionEstablished = true;
-      this.bleIsConnecting = false;
-    }, error => {
-      this.bleError = error
-      this.bleConnectionEstablished = false;
-      this.bleIsConnecting = false;
-    })
   }
 
-  calibrate() {
-    this.isCalibrated = true;
-    this.calibrationWeight = this.weight;
-    this.selectionModeReady = true;
-  }
 
   send() {
     this.sendDialogService.send({
@@ -76,50 +58,16 @@ export class WeighingModuleComponent {
     this.number = null;
   }
 
-  value() {
-    return this.ble
-
-      // 1) call the discover method will trigger the discovery process (by the browser)
-      .discover$({
-        acceptAllDevices: true,
-        optionalServices: [WeighingModuleComponent.GATT_PRIMARY_SERVICE]
-      })
-      .pipe(
-
-        // 2) get that service
-        mergeMap((gatt: BluetoothRemoteGATTServer) => {
-          return this.ble.getPrimaryService$(gatt, WeighingModuleComponent.GATT_PRIMARY_SERVICE);
-        }),
-
-        // 3) get a specific characteristic on that service
-        mergeMap((primaryService: BluetoothRemoteGATTService) => {
-          return this.ble.getCharacteristic$(primaryService, WeighingModuleComponent.GATT_CHARACTERISTIC);
-        }),
-
-        // 4) ask for the value of that characteristic (will return a DataView)
-        mergeMap((characteristic: BluetoothRemoteGATTCharacteristic) => {
-          return this.ble.observeValue$(characteristic);
-        }),
-
-        // 5) on that DataView, get the right value
-        map((value: DataView) => value
-        )
-      )
-  }
 
   schleuderungSelected(event: Schleuderung) {
     this.schleuderung = event;
   }
 
   isManuell(): boolean {
-    if(this.selectionMode === SelectionMode.Manuel) {
+    if (this.selectionMode === SelectionMode.Manuel) {
       return true;
     }
     return false;
-  }
-
-  setWeight(value: number) {
-    this.weight = value;
   }
 }
 

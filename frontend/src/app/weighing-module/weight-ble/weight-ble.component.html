@@ -1,0 +1,38 @@
+<mat-grid-tile [colspan]=2 *ngIf="bleIsConnecting">
+  <mat-spinner [diameter]="80"></mat-spinner>
+</mat-grid-tile>
+
+<mat-grid-tile [colspan]=2 *ngIf="bleError && !bleIsConnecting">
+  Es kam zu dem untenstehenden Fehler bei der Bluetooth-Verbindung.
+  Vielleicht einfach nochmal probieren....
+  <pre>{{bleError | json}}</pre>
+</mat-grid-tile>
+
+<div *ngIf="bleConnectionEstablished && !isCalibrated">
+  <mat-grid-tile [colspan]=2>
+    <h2>Kalibrierungsmodus</h2>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]=2>
+    <p>Die Waage bitte so vorbereiten, dass ein Honigraum darauf gestellt werden kann. Das schließt Distanzhölzchen
+      ein. Aber <strong>ohne</strong> Honigraum.</p>
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]=1>
+    <mat-form-field class="input-width">
+      <input matInput readonly placeholder="Gewicht" [value]="weight">
+      <span matSuffix>Kg</span>
+    </mat-form-field>
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]=1 [rowspan]="1">
+    <button mat-raised-button color="primary" (click)="calibrate()">Kalibrieren</button>
+  </mat-grid-tile>
+
+</div>
+
+
+
+<mat-form-field class="input-width">
+  <input matInput readonly placeholder="Gewicht" [value]="weight">
+  <span matSuffix>Kg</span>
+</mat-form-field>
