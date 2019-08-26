@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Schleuderung } from './send-dialog/send-dialog-data';
 import { SendDialogService } from './send-dialog.service';
 import { WeightCommunicationService } from './weight-communication.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-weighing-module',
@@ -24,6 +24,7 @@ export class WeighingModuleComponent implements OnInit {
     private sendDialogService: SendDialogService,
     private weightCommunicationService: WeightCommunicationService,
     private router: Router,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
@@ -32,15 +33,19 @@ export class WeighingModuleComponent implements OnInit {
   }
 
   manuel() {
-    // TODO fix this strange path
-    this.router.navigate(['weighing/manuell']);
+    this.router.navigate(['manuell'], { 
+      relativeTo: this.route,
+      skipLocationChange: true 
+    });
     this.selectionModeReady = true;
     this.selectionMode = SelectionMode.Manuel;
   }
 
   connectBLE() {
-    // TODO fix this strange path
-    this.router.navigate(['weighing/ble']);
+    this.router.navigate(['ble'], { 
+      relativeTo: this.route,
+      skipLocationChange: true 
+    });
     this.selectionModeReady = true;
     this.selectionMode = SelectionMode.Bluetooth;
   }
