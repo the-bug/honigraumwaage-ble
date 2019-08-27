@@ -1,0 +1,32 @@
+<mat-grid-list cols="4" rowHeight="90px">
+
+  <mat-grid-tile [colspan]=4>
+    <h1>Uebersicht</h1>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]=1>
+    Volk
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]=2>
+    HR
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]=1>
+    entf
+  </mat-grid-tile>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" #f="ngForm">
+    <div formArrayName="mappings">
+      <div *ngFor="let s of supperMappings.controls; let i=index">
+        <mat-grid-tile [colspan]=1>
+          {{s.value.hiveMark}}
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]=2>
+          {{s.value.supperMarks}}
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]=1>
+          <button mat-raised-button type="button" color="primary" (click)="delete(s.value.id)">X</button>
+        </mat-grid-tile>
+      </div>
+    </div>
+  </form>
+
+</mat-grid-list>

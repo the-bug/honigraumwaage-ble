@@ -7,6 +7,10 @@ const routes: Routes = [
     loadChildren: () => import('./weighing-module/weighing-module.module').then(mod => mod.WeighingModuleModule),
   },
   {
+    path: 'harvest-mapping',
+    loadChildren: () => import('./harvest-mapping/harvest-mapping.module').then(mod => mod.HarvestMappingModule),
+  },
+  {
     path: '',
     redirectTo: '/weighing',
     pathMatch: 'full'
