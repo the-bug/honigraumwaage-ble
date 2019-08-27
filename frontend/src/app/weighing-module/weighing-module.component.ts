@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Schleuderung } from './send-dialog/send-dialog-data';
 import { SendDialogService } from './send-dialog.service';
 import { WeightCommunicationService } from './weight-communication.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-weighing-module',
   templateUrl: './weighing-module.component.html',
   styleUrls: ['./weighing-module.component.css']
 })
-export class WeighingModuleComponent implements OnInit {
+export class WeighingModuleComponent implements OnInit, OnDestroy {
 
   selectionMode: SelectionMode;
   selectionModeReady = false;
@@ -20,6 +21,8 @@ export class WeighingModuleComponent implements OnInit {
 
   schleuderung: Schleuderung;
 
+  weightSubscription: Subscription;
+
   constructor(
     private sendDialogService: SendDialogService,
     private weightCommunicationService: WeightCommunicationService,
@@ -28,8 +31,11 @@ export class WeighingModuleComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // TODO unsubsribe
-    const sub1 = this.weightCommunicationService.weightAnnounced$.subscribe(w => this.weight = w);
+    this.weightSubscription = this.weightCommunicationService.weightAnnounced$.subscribe(w => this.weight = w);
+  }
+
+  ngOnDestroy(): void {
+    this.weightSubscription.unsubscribe();
   }
 
   manuel() {
