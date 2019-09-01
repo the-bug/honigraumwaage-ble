@@ -76,7 +76,9 @@ export class SupperMappingComponent implements OnInit, OnDestroy {
     this.form = this.fb.group({
       hiveMark: ['', Validators.required],
       supperMarks: this.fb.array([
-        this.fb.control('', Validators.required)
+        this.fb.control(''),
+        this.fb.control(''),
+        this.fb.control('')
       ])
     });
   }
