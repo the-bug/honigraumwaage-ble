@@ -7,6 +7,7 @@ export interface SendDialogData {
     schleuderung: Schleuderung
 }
 
+// TODO remove redundance schleuderung.ts
 export interface Schleuderung {
     jahr: string,
     sorte: string,

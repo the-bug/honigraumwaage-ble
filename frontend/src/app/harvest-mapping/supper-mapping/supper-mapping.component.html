@@ -9,9 +9,11 @@
 
     <mat-grid-tile [colspan]=2>
       <mat-form-field>
+        <!-- TODO Set focus here after click on senden-->
         <input type="number" matInput placeholder="Kastennummer" formControlName="hiveMark">
       </mat-form-field>
     </mat-grid-tile>
+    <!-- TODO fix tab. Should move frome Kastennumer to Honiggraumnummer and not Kastennummer to Senden-->
     <mat-grid-tile [colspan]=1>
       <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Senden</button>
     </mat-grid-tile>
@@ -20,6 +22,7 @@
       <div *ngFor="let s of supperMarks.controls; let i=index">
         <mat-grid-tile [colspan]=3>
           <mat-form-field>
+            <!-- TODO add new empty input after the last one is filled and remove button-->
             <input type="number" matInput placeholder="Honigraumnummer" [formControlName]="i">
           </mat-form-field>
         </mat-grid-tile>
