@@ -10,7 +10,7 @@ export class SchleuderungDataService {
   // Maybe the first Input should be stored in an indexedDB....
   private schleuderungSource = new BehaviorSubject<Schleuderung>(
     {
-      jahr: (new Date()).getFullYear(),
+      jahr: (new Date()).getFullYear().toString(),
       sorte: '',
       standort: ''
     }
